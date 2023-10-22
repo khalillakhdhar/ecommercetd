@@ -1,5 +1,6 @@
 package com.hql.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +15,11 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Commande extends AuditModel {
+public class Commande extends AuditModel implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 @ManyToMany
 @JsonManagedReference 
 //les commandes sont gérer depuis l'objet dominant produits

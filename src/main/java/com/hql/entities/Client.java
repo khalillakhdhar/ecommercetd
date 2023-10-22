@@ -1,5 +1,6 @@
 package com.hql.entities;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
@@ -17,7 +19,11 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Client extends AuditModel {
+public class Client extends AuditModel implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 @Column(nullable = false)
 @NotBlank
 private String nom,prenom,tel,adresse;
@@ -27,6 +33,11 @@ private int age;
 private Genre genre;
 @Enumerated(EnumType.STRING)
 private Grade grade;
+@Column(nullable = false)
+private String password;
+@Email
+@Column(unique = true)
+private String email;
 
 @JsonBackReference
 @ManyToMany(mappedBy = "clients")
